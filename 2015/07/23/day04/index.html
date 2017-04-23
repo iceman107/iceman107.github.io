@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iceman107.github.io">
-  <title>day04 | iceman的博客</title>
+  <title>在前端页面开发中所遇到的问题总结 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录成长之路">
+  <meta name="description" content="1.常见的meta标签错误。 meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。123456789&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot; /&amp;gt;//IE兼容&amp;lt;meta content=&amp;quot;width">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="day04">
+<meta property="og:title" content="在前端页面开发中所遇到的问题总结">
 <meta property="og:url" content="http://iceman107.github.io/2015/07/23/day04/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="记录成长之路">
-<meta property="og:updated_time" content="2017-04-23T02:23:38.161Z">
+<meta property="og:description" content="1.常见的meta标签错误。 meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。123456789&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot; /&amp;gt;//IE兼容&amp;lt;meta content=&amp;quot;width">
+<meta property="og:updated_time" content="2017-04-23T02:59:05.841Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="day04">
-<meta name="twitter:description" content="记录成长之路">
+<meta name="twitter:title" content="在前端页面开发中所遇到的问题总结">
+<meta name="twitter:description" content="1.常见的meta标签错误。 meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。123456789&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot; /&amp;gt;//IE兼容&amp;lt;meta content=&amp;quot;width">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      day04
+      在前端页面开发中所遇到的问题总结
     </h1>
   
 
@@ -178,7 +178,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <a id="more"></a>
+<p>1.常见的meta标签错误。</p>
+<p>meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;//IE兼容</div><div class="line"></div><div class="line">&lt;meta content=&quot;width=device-width, initial-scale=1.0&quot; name=&quot;viewport&quot;&gt;//响应式</div><div class="line"></div><div class="line">&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;//WebApp全屏模式</div><div class="line"></div><div class="line">&lt;meta content=&quot;application/xhtml+xml;charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;//中文字体识别</div><div class="line"></div><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot; /&gt;//禁止页面缩放</div></pre></td></tr></table></figure></p>
+<p>例如： 中各个属性值得内在含义</p>
+<p>width=device-width 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边<br>width：宽度（数值 / device-width）（范围从200 到10,000，默认为980 像素）<br>height：高度（数值 / device-height）（范围从223 到10,000）<br>initial-scale：初始的缩放比例 （范围从&gt;0 到10）<br>minimum-scale：允许用户缩放到的最小比例<br>maximum-scale：允许用户缩放到的最大比例<br>user-scalable：用户是否可以手动缩 (no,yes)</p>
+<p>2.JavaScript引用的时候导致的全局污染</p>
+<p>最佳解决方案:闭包的使用</p>
+<p>最简单的闭包（立即执行函数）（function（$）{}）(jQuery)；<br>如果是想使用类级别的组件为： jQuery.函数名=function（）{};<br>对象级组件 $.fn.函数名 = function(){};<br>注意：JavaScript的插件使用时一定要注意看是否是原生的js，上面的几种闭包都是属于jQuery的声明方式。</p>
+<p>当在HTML页面中所用的标签非链接标签时的处理方式</p>
+<p>可以在所需要的HTML标签里面添加 onclick=”window.location.href = ‘#’”；实现页面的超链接<br>或者 onclick=”dianji（）；”在script标签里面声明function dianji(){ window.location.href = ‘#’ };<br>this对象的理解</p>
+<p>在jQuery和JavaScript中this对象一直是新手们的脑残点，所以每次都不敢大胆使用，</p>
+<p>在JavaScript的理解</p>
+<p>1.纯粹的函数调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function test()&#123;</div><div class="line">this.x = 1;</div><div class="line">alert(this.x);</div><div class="line">&#125;</div><div class="line">test();//1</div></pre></td></tr></table></figure></p>
+<p>2.函数作为某个对象的方法进行调用，这是this就指向这个上级的对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function test()</div><div class="line">&#123;</div><div class="line">alert(this.x);</div><div class="line">&#125;</div><div class="line">var o = &#123;&#125;;</div><div class="line">o.x = 1;</div><div class="line">o.m = test;</div><div class="line">o.m();//1</div></pre></td></tr></table></figure></p>
+<p>3.作为构造函数进行调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function test()&#123;</div><div class="line">this.x = 1;</div><div class="line">&#125;</div><div class="line">var test1 = new test();</div><div class="line">alert(test1.x);//1</div></pre></td></tr></table></figure></p>
+<p>为了证明此时this不是指向全局变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(x);<span class="comment">//2</span></div></pre></td></tr></table></figure></p>
+<p>4.apply调用apply方法中第一个参数就是this指向的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var x = 2;</div><div class="line">function test()&#123;</div><div class="line">alert(this.x);</div><div class="line">&#125;</div><div class="line">var o = &#123;&#125;;</div><div class="line">o.x = 1;</div><div class="line">o.m = test;</div><div class="line">o.m.apply(o)</div></pre></td></tr></table></figure></p>
+<p>在jQuery中的理解<br>单纯的this使用表示当前的上下文对象是一个html对象，可以调用html对象所拥有的属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(&quot;#textbox&quot;).hover(</div><div class="line">function() &#123;</div><div class="line">this.title = &quot;Test&quot;;</div><div class="line">&#125;,</div><div class="line">fucntion() &#123;</div><div class="line">this.title = &quot;OK”;</div><div class="line">&#125;</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>方法 $(this)的使用代表的上下文对象是一个jquery的上下文对象，可以调用jquery的方法和属性值，也就是说$(this)为jQuery的对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(&quot;#textbox&quot;).hover(</div><div class="line">function() &#123;</div><div class="line">$(this).title ＝ &quot;Test&quot;;</div><div class="line">&#125;,</div><div class="line">function() &#123;</div><div class="line">$(this).title = &quot;OK&quot;;</div><div class="line">&#125;</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>3.标签使用的一些小细节问题</p>
+<p>a标签中的target = “_blank” 用于在新窗口打开页面；<br>target = “_self” 在本窗口打开页面 ；<br>target = “_parent”在父窗口打开页面</p>
+<p>在标签里面的alt、title的属性中最好填上相关的数据，这个是为了优化搜索引擎，作为一个深谋远略的前端挨踢，这个引擎搜索优化是必须做的。</p>
+<p>input框去掉光标readonly unselectable=”on”。outline: none;</p>
+<p>媒体查询的基本语句使用：@media (min-width: 768px) and (max-width: 979px) {} ;</p>
+<p>在html5中新的标签在IE上的兼容比较麻烦，其实兼容一直以来都是程序员考虑的难点，当我们遇到新标签在IE9以上的浏览器无法兼容时我们可以采取：<br>DOM的方式来解决：document.createElement(“header”)；<br>在JavaScript中去创建新标签。</p>
+<p>对于浮动元素的使用也是一个小坑（主要针对新手），在使用完float的时候，元素处于浮动的形态，需要元素站位时，我们就要用到　<br>clear：left;表示左侧不能有浮动元素。<br>clear：right;表示右侧不能有浮动元素。<br>clear：both;表示左右两侧都不能有浮动元素。<br>来清除先前的浮动，不会改变当前元素的位置形态。</p>
+<p>在标签上没有给具体的样式名的时候对标签的操作：<br>：nth-child(2) 获取每个元素下面的第几个子元素<br>：first-line 选择每个元素的首行。<br>：first-child 选择属于父元素的第一个子元素的每个元素。<br>：first 选取第一个元素</p>
+<p>在项目搭建的时候大家都会去引进一个reset的重置样式，我建议如果项目较小的话可以自己构建，大的项目可以参考一下阿里、百度、腾讯的reset.css重置。这样会减少代码的冗长。</p>
+
       
 
       
