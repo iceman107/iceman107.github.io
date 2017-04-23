@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iceman107.github.io">
-  <title>Archives: 2014/6 | iceman的博客</title>
+  <title>JavaScript语言精粹读书笔记 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录成长之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="iceman的博客">
-<meta property="og:url" content="http://iceman107.github.io/archives/2014/06/index.html">
+  <meta name="description" content="###JavaScript 函数：函数包含一组语句，他们是JavaScript的基础模块单元，用于代码复用、信息隐藏和组合调用。函数用于指定对象的行为。  ###函数对象Functions：在JavaScript中函数就是对象。对象是“键值”对的集合并拥有一个连接到原型对象的隐藏连接。对象字面量产生的对象连接到Object.prototype。函数对象连接到Function.prototype（该">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript语言精粹读书笔记">
+<meta property="og:url" content="http://iceman107.github.io/2014/08/23/day02/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="记录成长之路">
+<meta property="og:description" content="###JavaScript 函数：函数包含一组语句，他们是JavaScript的基础模块单元，用于代码复用、信息隐藏和组合调用。函数用于指定对象的行为。  ###函数对象Functions：在JavaScript中函数就是对象。对象是“键值”对的集合并拥有一个连接到原型对象的隐藏连接。对象字面量产生的对象连接到Object.prototype。函数对象连接到Function.prototype（该">
+<meta property="og:updated_time" content="2017-04-23T02:17:31.461Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iceman的博客">
-<meta name="twitter:description" content="记录成长之路">
+<meta name="twitter:title" content="JavaScript语言精粹读书笔记">
+<meta name="twitter:description" content="###JavaScript 函数：函数包含一组语句，他们是JavaScript的基础模块单元，用于代码复用、信息隐藏和组合调用。函数用于指定对象的行为。  ###函数对象Functions：在JavaScript中函数就是对象。对象是“键值”对的集合并拥有一个连接到原型对象的隐藏连接。对象字面量产生的对象连接到Object.prototype。函数对象连接到Function.prototype（该">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -156,79 +158,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-day02" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2014" class="archive-year">2014</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/06/10/javascript/" class="archive-article-date">
-  	<time datetime="2014-06-10T12:08:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-06-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/06/10/javascript/">面试题-基础篇</a>
+    <h1 class="article-title" itemprop="name">
+      JavaScript语言精粹读书笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2014/08/23/day02/" class="archive-article-date">
+  	<time datetime="2014-08-23T02:12:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###JavaScript 函数：<br>函数包含一组语句，他们是JavaScript的基础模块单元，用于代码复用、信息隐藏和组合调用。<br>函数用于指定对象的行为。 </p>
+<p>###函数对象Functions：<br>在JavaScript中函数就是对象。对象是“键值”对的集合并拥有一个连接到原型对象的隐藏连接。<br>对象字面量产生的对象连接到Object.prototype。函数对象连接到Function.prototype（该原型对象本身连接到Object.prototype）。<br>每个函数在创建时都拥有两个附加属性：函数的上下文和实现函数行为的代码。<br>每个函数对象在创建时也随带有一个prototype属性，它的值是一个拥有constructor属性且值即为该函数的对象。 </p>
+<p>###函数字面量Function Literal：<br>var add = function(a, b) {return a + b;};<br>通过函数字面量创建的函数对象包含一个连到外部上下文的连接，这被称为闭包。 </p>
+<p>###调用Invocation：<br>调用一个函数将暂停当前函数的执行，传递控制权和参数给新函数。除了声明时定义的形式参数，每个函数接收两个附加的属性：this和arguments。<br>参数this在面向对象的编程中非常重要，它的值取决于调用的模式。JavaScript中一共有4中调用模式：方法调用模式、函数调用模式、构造器调用模式和apply调用模式。这些模式在如何初始化关键参数this上存在差异。<br>调用运算符():跟在任何产生一个函数值的表达式之后的一对圆括号。当实际参数（arguments）的个数与形式参数（parameters）的个数不匹配时，不会导致运行时错误。 </p>
+<p>###方法调用模式：The Method Invocation Pattern<br>当一个函数被保存为对象的一个属性时，我们称它为一个方法。当一个方法被调用时，this被绑定到该对象。如果一个调用表达式包含一个属性存取表达式（即一个.号表达式或[subscript]下标表达式），那么它被当作一个方法来调用。<br>方法可以使用this去访问对象，所以它能从对象中取值或修改该对象。this到对象的绑定发生在调用的时候。这个“超级”迟绑定（very late binding）使得函数可以对this高度复用。通过this可取得他们所属对象的上下文的方法称为公共方法。 </p>
+<p>###函数调用模式：The Function Invocation Pattern<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">当一个函数并非一个对象的属性时，那么它被当作一个函数来调用。 </div><div class="line"><span class="keyword">var</span> sum = add(<span class="number">3</span>,<span class="number">4</span>); </div><div class="line">当函数以此模式调用时，<span class="keyword">this</span>被绑定到全局对象。 </div><div class="line"><span class="comment">// 给myObject增加一个double方法（上面myObject对象已经有了属性value和方法increasement） </span></div><div class="line">myObject.double = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </div><div class="line"><span class="keyword">var</span> that = <span class="keyword">this</span>; </div><div class="line"><span class="keyword">var</span> helper = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">that.value = add(that.value, that.value); </div><div class="line">&#125;; </div><div class="line"><span class="comment">// The Function Invocation Pattern </span></div><div class="line">helper(); </div><div class="line">&#125; </div><div class="line"><span class="comment">// The Method Invocation Pattern </span></div><div class="line">myObject.double(); </div><div class="line"><span class="built_in">document</span>.writeln(myObject.getValue());</div></pre></td></tr></table></figure></p>
+<p>###构造器调用模式：The Constructor Invocation Pattern<br>JavaScript是一门基于原型继承的预言。这意味着对象可以直接从其他对象继承属性。该语言是无类别的。这偏离了当今编程的主流。当今大多数语言都是基于类的语言。尽管原型继承有着强大的表现力，但他并不被广泛理解。JavaScript本身对其原型的本质也缺乏信心，所以它提供了一套和基于类的语言类似的对象构建语法。<br>如果在一个函数前面带上new来调用，那么将创建一个隐藏连接到该函数的prototype成员的新对象，同时this将会被绑定到那个新对象上。<br>结合new前缀调用的函数被称为构造器函数。按照约定，他们保存在以大写格式命名的变量里。 </p>
+<p>###Apply调用模式：The Apply Invocation Pattern<br>因为JavaScript是一门函数式的面向对象编程语言，所以函数可以拥有方法。<br>apply方法让我们构建一个参数数组并用其去调用函数。它也允许我们选择this的值。<br>apply方法接收两个参数。第一个参数将被绑定给this。第二个就是一个参数数组。 </p>
+<p>###参数Arguments：<br>当函数被调用时，会得到一个“免费”奉送的变量arguments数组。通过它函数可以访问所有它被调用时传递给它的参数列表，包括那些没有被分配给函数声明时定义的形式参数的多余参数。这使得编写一个无须指定参数的函数成为可能。<br>arguments是一个类似数组（array-like）的对象，他并不是真正的数组。有length属性，但没有数组的其他方法。</p>
+<p>###返回Return：<br>一个函数总是会返回一个值，如果没有指定返回值，则返回undefined。<br>如果函数以在前面加上new前缀的方法来调用，且返回值不是一个对象，则返回this（该新对象）。 </p>
+<p>异常Exceptions：try catch throw </p>
+<p>###给类型增加方法：<br>JavaScript允许给语言的基本类型增加方法（通过prototype）。<br>Function.prototype.method = function (name, method) {if(this.prototype[name]){this.prototype[name] = method; return this;}};<br>通过给Function.prototype对象增加一个method方法，我们就不必键入prototype这个属性名。<br>Number.method(‘integer’, function () {return Math<a href="this">this &lt; 0 ? ‘ceiling’ : ‘floor’</a>;});<br>String.metho(‘trim’, function () {return this.replace(‘/^\s+|\s+$/g’,’’);}); </p>
+<p>通过给基本类型增加方法，我们可以大大提高语言的表现力。因为JavaScript是原型继承的动态本质（在属性访问符调用时，一层一层检查），新的方法立刻被赋予到所有的值（对象）上，哪怕值（对象）是在方法被创建之前就创建好了。<br>另一个需要注意的是for in 语句在原型上时表现很糟糕。可以用hasOwnProperty方法筛选出继承而来的属性。 </p>
+<p>###递归Recursion：汉诺塔难题 </p>
+<p>###作用域Scope：<br>在编程语言中，作用域控制着变量与参数的可见性和生命周期。对程序员来说这是一个重要的帮组，因为它减少了名称冲突，并且提供了自动内存管理。 </p>
+<p>###闭包Closure：<br>作用域的好处是内部函数可以访问定义在它们外部的参数和变量（除了this和arguments）。 </p>
+<p>###回调Callbacks：<br>模块Module：<br>我们可以使用函数和闭包来构造模块。模块是一个提供接口却隐藏状态与实现的函数或对象。通过使用函数去产生模块，我们几乎可以完全摒弃全局变量的使用，从而缓解这个JavaScript的最为糟糕的特性之一所带来的影响。<br>模块的一般形式：一个定义了私有变量和函数的函数；利用闭包创建可以访问私有变量和函数的特权函数。最后返回特权函数，或者把他们保存到一个可以访问到的地方。 </p>
+<p>###级联Cascade：<br>有一些方法没有返回值。如果我们让这些方法返回this而不是undefined，就可以启动级联（例子：jQuery的链式调用）。 </p>
+<p>###套用Curry：<br>记忆Memoization：<br>函数可以用对象去记住先前的结果，从而能避免无谓的运算。这种优化被称为记忆。 </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/日志/" class="article-tag-list-link color3">日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/二级目录/" class="article-tag-list-link color5">二级目录</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://iceman107.github.io/2014/08/23/day02/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2014/07/03/day01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          前端常见bug
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2015/03/12/day03/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS闭包、作用域链、垃圾回收、内存泄露</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -251,8 +350,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

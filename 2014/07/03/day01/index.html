@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://iceman107.github.io">
   <title>前端常见bug | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：【关于margin的BUG】 【JavaScript部分】 【网络技术相关部分】">
+  <meta name="description" content="摘要：【关于margin的BUG】 【JavaScript部分】">
 <meta name="keywords" content="前端,bug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端常见bug">
 <meta property="og:url" content="http://iceman107.github.io/2014/07/03/day01/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="摘要：【关于margin的BUG】 【JavaScript部分】 【网络技术相关部分】">
-<meta property="og:updated_time" content="2017-04-23T02:01:27.125Z">
+<meta property="og:description" content="摘要：【关于margin的BUG】 【JavaScript部分】">
+<meta property="og:updated_time" content="2017-04-23T02:09:20.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端常见bug">
-<meta name="twitter:description" content="摘要：【关于margin的BUG】 【JavaScript部分】 【网络技术相关部分】">
+<meta name="twitter:description" content="摘要：【关于margin的BUG】 【JavaScript部分】">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -180,7 +180,6 @@
       
         <p>摘要：<br>【关于margin的BUG】</p>
 <p>【JavaScript部分】</p>
-<p>【网络技术相关部分】</p>
 <a id="more"></a>
 <p>【关于margin的BUG】<br>IE6中双边距Bug：<br>发生场合：当给父元素内第一个浮动元素设置margin-left（元素float:left）或margin-right（元素float:right）时margin加倍。<br>解决方法：是给浮动元素加上display:inline;CSS属性；或者用padding-left代替margin-left。</p>
 <p>原理分析：块级对象默认的display属性值是block，当设置了浮动的同时，还设置了它的外边距就会出现这种情况。也许你会问：“为什么之后的对象和第一个对象之间就不存在双倍边距的Bug”？因为浮动都有其相对应的对象，只有相对于其父对象的浮动对象才会出现这样的问题。第一个对象是相对父对象的，而之后对象是相对第一个对象的，所以之后对象在设置后不会出现问题。为什么display:inline可以解决这个双边距bug，首先是inline元素或inline-block元素是不存在双边距问题的。然后，float:left等浮动属性可以让inline元素haslayout，会让inline元素表现得跟inline-block元素的特性一样，支持高宽，垂直margin和padding等，所以div class的所有样式可以用在这个display inline的元素上。</p>
@@ -318,6 +317,11 @@
     </a>
   
   
+    <a href="/2014/08/23/day02/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript语言精粹读书笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
 </nav>
 
 
@@ -418,19 +422,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">bug</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
             
             <div class="clearfix"></div>
