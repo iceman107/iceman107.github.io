@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iceman107.github.io">
-  <title>day05 | iceman的博客</title>
+  <title>理解面向对象 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录成长之路">
-<meta name="keywords">
+  <meta name="description" content="摘要：【工厂模式】 【构造函数模式】 【原型模式】">
+<meta name="keywords" content="面向对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="day05">
+<meta property="og:title" content="理解面向对象">
 <meta property="og:url" content="http://iceman107.github.io/2015/09/15/day05/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="记录成长之路">
-<meta property="og:updated_time" content="2017-04-23T02:24:00.808Z">
+<meta property="og:description" content="摘要：【工厂模式】 【构造函数模式】 【原型模式】">
+<meta property="og:updated_time" content="2017-04-23T03:10:59.453Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="day05">
-<meta name="twitter:description" content="记录成长之路">
+<meta name="twitter:title" content="理解面向对象">
+<meta name="twitter:description" content="摘要：【工厂模式】 【构造函数模式】 【原型模式】">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      day05
+      理解面向对象
     </h1>
   
 
@@ -178,7 +178,99 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>摘要：<br>【工厂模式】</p>
+<p>【构造函数模式】</p>
+<p>【原型模式】</p>
+<a id="more"></a>
+<p>一，创建对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">	var people1 = new Object();//只有对象上才能添加属性  </div><div class="line">    people1.name = &apos;fanlizhi&apos;;  </div><div class="line">    people1.sayName = function()&#123;alert(people1.name);&#125;  </div><div class="line">    var people2 = new Object();  </div><div class="line">    people2.name = &apos;小明&apos;;  </div><div class="line">    people2.sayName = function()&#123;alert(people2.name);&#125;  </div><div class="line">  </div><div class="line">    people1.sayName();//fanlizhi  </div><div class="line">    people2.sayName();//小明  </div><div class="line">```	</div><div class="line">缺点：最先想到的方式，实例都需要重新给属性如果n个实例，代码量大。</div><div class="line"></div><div class="line"></div><div class="line">二，工厂模式：</div></pre></td></tr></table></figure></p>
+<p>function createPerson(name){<br>        var o = new Object();<br>        o.name = name;<br>        o.sayName = function(){<br>            alert(this.name);<br>        }<br>        return o;<br>    }<br>    var people1 = createPerson(‘fanlizhi’);<br>    var people2 = createPerson(‘小明’);  </p>
+<pre><code>people2.sayName();//小明  
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">进步：较上面相比有统一的入口方法createPerson并且n个实例代码量明显减少。</div><div class="line"></div><div class="line">缺点：不能解决对象识别的问题，我不知道people1和people2都是属于什么对象的。</div><div class="line"></div><div class="line"></div><div class="line">三，构造函数模式：</div></pre></td></tr></table></figure>
+<p>function Person(name){<br>        this.name = name;<br>        this.sayName = function(){<br>            alert(this.name);<br>        }<br>    }<br>    var people1 = new Person(‘fanlizhi’);<br>    var people2 = new Person(‘小明’);  </p>
+<pre><code>people1.sayName();//fanlizhi  
+people2.sayName();//小明  
+
+//constructor:标识对象类型的  
+alert(people1.constructor == Person);alert(people2.constructor == Person);//true  
+//instanceof:检测对象类型是否属于XXX  
+alert(people1 instanceof Object);alert(people1 instanceof Person);alert(people2 instanceof Object);alert(people2 instanceof Person);//true  
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">进步：更加靠近面向对象语言形式了， 用到new关键字和“类名”（方法名Person）开头大写。直接将this指向Person而且不需要return对象。</div><div class="line"></div><div class="line">缺点：因为每次实例化的时候都会执行Person方法，所以每个实例不仅有自己独有的name同时，也将有自己独有的sayName方法（不是同一个方法的引用）。</div><div class="line"></div><div class="line">如下面的例子：</div><div class="line">		alert(people1.sayName == people2.sayName); //false  </div><div class="line">因此浪费了资源，我们只需要调用同一个方法就行了而不像现在调用的是两个sayName方法。</div><div class="line"></div><div class="line"></div><div class="line">四；提出构造函数中的方法：</div></pre></td></tr></table></figure>
+<p>function Person(name){<br>        this.name = name;<br>        this.sayName = sayName;<br>    }<br>    function sayName(){<br>        alert(this.name);<br>    }<br>    var people1 = new Person(‘fanlizhi’);<br>    var people2 = new Person(‘小明’);  </p>
+<pre><code>alert(people1.sayName == people2.sayName);//true  
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">进步：people1和people2中的方法终于是引用的同一个方法了。</div><div class="line"></div><div class="line">缺点：大家都知道，sayName是window的一个方法可以用window.sayName()调用，给window添加方法很乱，所以封装性不好。</div><div class="line"></div><div class="line"></div><div class="line">五，原型模式：</div><div class="line"></div><div class="line">首先我需要说明一下什么是prototype，要不然在代码里面会显得突兀，prototype:当实例对象的时候，对象会自动生成一个prototype属性，他是一个指针指向Person原型，我们可以直接理解为Person.prtotype = Person原型 = 可以共享的属性和方法的一个载体。</div></pre></td></tr></table></figure>
+<p>function Person(name){<br>     this.name = name;<br>}<br>Person.prototype.sayName = function(){<br>     alert(this.name);<br>}<br>var people1 = new Person(‘fanlizhi’);<br>var people2 = new Person(‘小明’);  </p>
+<p>alert(people1.sayName == people2.sayName);//true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">进步：由于上一种方式缺点在于指针指的是window，这里用prototype指向了Person，更干净了构造函数中传值的name可以实例化name为不同的对象，所以放到Person下（即：构造函数下），而sayName只需要调用公共的方法不需要每个对象有自己单独的实例，所以放到prototype中。</div><div class="line"></div><div class="line">我们已经走完实现过程了，这还早，下面才是重头戏，我们一起来分析一下上面的代码。</div><div class="line"></div><div class="line">深入理解原型：</div><div class="line"></div><div class="line">先看一个例子：这是我用firebug查看people2中所含有的属性，还是原型模式中的代码。</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">__proto__：当实例化对象people1的时候解释器内部的一个关联关系。换句话说就是people1与Person.prototype有一个连接__proto__，isPrototypeOf就是判断这个连接的方法（后面会给出例子）。我们还有个链接不知道大家忘记没有，就是constructor，constructor其实就是对象实例化的时候people1与Person的关系，people1.constructor指向Person，其实这个constructor是来自于People.prototype.constructor，这个实例化时候内部解释器自动加上的默认属性。</div><div class="line"></div><div class="line">	alert(Person.prototype.isPrototypeOf(people1));//true  </div><div class="line"></div><div class="line">注意：我要强调一点就是__proto__是实例和Person.prototype之间的关系，而constructor是实例和Person之间的关系。</div><div class="line"></div><div class="line">下面我们聊一下关于优先级的问题，先看代码：</div></pre></td></tr></table></figure></p>
+<ol>
+<li>function Person(name){  </li>
+<li>this.name = name;  </li>
+<li>}  </li>
+<li>Person.prototype.sayName = function(){  </li>
+<li>alert(this.name);  </li>
+<li>}     </li>
+<li>var people1 = new Person(‘fanlizhi’);  </li>
+<li>people1.sayName = function(){  </li>
+<li>alert(this.name+’ hello’);  </li>
+<li>}  </li>
+<li>people1.sayName();//fanlizhi hello  </li>
+<li>delete people1.sayName;  </li>
+<li><p>people1.sayName();//fanlizhi  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">从这里我们发现一个访问优先级的问题：</div><div class="line">当我们第一次调用people1.sayName()时，他先找实例people1中是否含有sayName()，如果有就调用并返回，当我们删除了people1中的sayName的时候，再次调用people1.sayName()，这次发现实例people1中没有sayName()，所以他就找原型里面是否有，当发现原型里面有的时候，就调用原型里面的sayName()。在这里我得讲两个方法hasOwnProperty() 和 in 这个有助于我们对优先级的了解，先看例子：</div></pre></td></tr></table></figure>
+</li>
+<li><p>function Person(){  </p>
+</li>
+<li>}  </li>
+<li>Person.prototype.name = ‘fanlizhi’;  </li>
+<li>Person.prototype.sayName = function(){  </li>
+<li>alert(this.name);  </li>
+<li>}     </li>
+<li>var people1 = new Person();  </li>
+<li>alert(people1.hasOwnProperty(“name”));//false  </li>
+<li>alert(“name” in people1);//true  </li>
+<li>people1.name = ‘小明’;  </li>
+<li>alert(people1.hasOwnProperty(“name”));//true  </li>
+<li><p>alert(“name” in people1);//true  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">看例子基本就懂了，hasOwnProperty 从名字来看“有自己独有的属性”第一次调用的时候为false，因为name不是独有的，而是公共的后来通过people1.name = &apos;小明&apos;; 赋值给他一个独有的name，所以后来为true， 而in操作符，只要能访问到people1.name，不论是独有的还是公共的都返回true。</div><div class="line">我们经常会看到这样的例子：</div></pre></td></tr></table></figure>
+</li>
+<li><p>function Person(){  </p>
+</li>
+<li>}  </li>
+<li>Person.prototype = {  </li>
+<li>name:’fanlizhi’,  </li>
+<li>sayName:function(){  </li>
+<li>alert(this.name);  </li>
+<li>}  </li>
+<li><p>}  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">我们用一段代码来辅助我们对上面方式的分析：</div></pre></td></tr></table></figure>
+</li>
+<li><p>function Person(){  </p>
+</li>
+<li>}  </li>
+<li>var people1 = new Person();  </li>
+<li>alert(people1.constructor);//Person()  </li>
+<li>Person.prototype = {  </li>
+<li>name:’fanlizhi’,  </li>
+<li>sayName:function(){  </li>
+<li>alert(this.name);  </li>
+<li>}  </li>
+<li>}  </li>
+<li>var people2 = new Person();  </li>
+<li>alert(people2.constructor);//Object()  </li>
+<li>people1.sayName();//error  </li>
+<li><p>people2.sayName();//fanlizhi  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">当我们实例化people1的时候，默认创建的constructor会取到prototype的指向，是隶属于Person()的，所以alert(people1.constructor);//Person()。</div><div class="line">当我们实例化people2的时候，也会取到prototype的指向，但是这次我们是重写了Person.prototype，所以打印的是Object()，至于为什么，可以理解成var  o = &#123;&#125; ,这是一个Object申明的过程。</div><div class="line">people1.sayName();//error : 由于实例化的时候使用的是默认的prototype，后来改写了Person.prototype，所以__proto__被破坏找不到Person.prototype和实例关联，所以error。</div><div class="line">而people2则是在实例化的时候就调用的是后来重写的Person.prototype，并建立了关联所以调用时候能根据连接找到属性，而没有报错。</div><div class="line"></div><div class="line">以上便是我对面向对象的理解，通过文字和代码传达给大家，希望大家多多提问，一起来讨论。</div><div class="line"></div><div class="line">最后有个思考题：</div></pre></td></tr></table></figure>
+</li>
+<li><p>function Person(){  </p>
+</li>
+<li>}  </li>
+<li>Person.prototype = {  </li>
+<li>constructor:Person,  </li>
+<li>name:’fanlizhi’,  </li>
+<li>sayName:function(){  </li>
+<li>alert(this.name);  </li>
+<li>}  </li>
+<li>}<br>```<br>为什么要在原型中加入constructor:Person呢？</li>
+</ol>
+
       
 
       
@@ -207,6 +299,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面向对象</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -399,6 +502,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JS闭包</a>
               </li>
             
             <div class="clearfix"></div>

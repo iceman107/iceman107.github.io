@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://iceman107.github.io">
   <title>在前端页面开发中所遇到的问题总结 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.常见的meta标签错误。 meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。123456789&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot; /&amp;gt;//IE兼容&amp;lt;meta content=&amp;quot;width">
-<meta name="keywords">
+  <meta name="description" content="摘要：【meat标签】 【全局污染】">
+<meta name="keywords" content="bug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在前端页面开发中所遇到的问题总结">
 <meta property="og:url" content="http://iceman107.github.io/2015/07/23/day04/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="1.常见的meta标签错误。 meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。123456789&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot; /&amp;gt;//IE兼容&amp;lt;meta content=&amp;quot;width">
-<meta property="og:updated_time" content="2017-04-23T02:59:05.841Z">
+<meta property="og:description" content="摘要：【meat标签】 【全局污染】">
+<meta property="og:updated_time" content="2017-04-23T03:05:16.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在前端页面开发中所遇到的问题总结">
-<meta name="twitter:description" content="1.常见的meta标签错误。 meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。123456789&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge&amp;quot; /&amp;gt;//IE兼容&amp;lt;meta content=&amp;quot;width">
+<meta name="twitter:description" content="摘要：【meat标签】 【全局污染】">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -178,7 +178,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>摘要：<br>【meat标签】</p>
+<p>【全局污染】</p>
+<a id="more"></a>
 <p>1.常见的meta标签错误。</p>
 <p>meta的使用既可以考虑了对于常见的浏览器兼容，也可以处理一些响应问题。 而问题主要存在于响应式布局和手机端页面开发中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;//IE兼容</div><div class="line"></div><div class="line">&lt;meta content=&quot;width=device-width, initial-scale=1.0&quot; name=&quot;viewport&quot;&gt;//响应式</div><div class="line"></div><div class="line">&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;//WebApp全屏模式</div><div class="line"></div><div class="line">&lt;meta content=&quot;application/xhtml+xml;charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;//中文字体识别</div><div class="line"></div><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot; /&gt;//禁止页面缩放</div></pre></td></tr></table></figure></p>
 <p>例如： 中各个属性值得内在含义</p>
@@ -235,6 +237,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">bug</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -310,7 +323,7 @@
   
   
     <a href="/2015/09/15/day05/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">day05</div>
+      <div class="article-nav-title">理解面向对象</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -427,6 +440,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JS闭包</a>
               </li>
             
             <div class="clearfix"></div>
