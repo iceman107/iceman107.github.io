@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://iceman107.github.io">
   <title>JS继承 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：【继承】">
+  <meta name="description" content="摘要：【继承：继承其实就是通过原型链来实现的。】">
 <meta name="keywords" content="javascript,继承">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS继承">
 <meta property="og:url" content="http://iceman107.github.io/2016/03/08/day06/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="摘要：【继承】">
-<meta property="og:updated_time" content="2017-04-23T03:39:57.482Z">
+<meta property="og:description" content="摘要：【继承：继承其实就是通过原型链来实现的。】">
+<meta property="og:updated_time" content="2017-04-23T03:43:52.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS继承">
-<meta name="twitter:description" content="摘要：【继承】">
+<meta name="twitter:description" content="摘要：【继承：继承其实就是通过原型链来实现的。】">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：<br>【继承】</p>
+        <p>摘要：<br>【继承：继承其实就是通过原型链来实现的。】</p>
 <a id="more"></a>
 <p>继承：继承其实就是通过原型链来实现的。<br>原型链：先回顾一下构造函数，原型和实例的关系：每个构造函数都有一个原型对象（prototype），原型对象包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针（<strong>pro</strong>）这些可以参考我上篇文章javascript深入了解（面向对象）；由于是讲的两个模块所以在此就不重复了。<br>那么假如我们让另一个类型的实例赋值给原型对象，此时的原型对象就会包含另一个原型的指针，同时另一个原型对象也会包含一个指向另一个构造函数的指针。这就形成了一个原型链。<br>先看一个例子这有助于理解上面这段话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">1. function Father()&#123;  </div><div class="line">2.     this.familyName = &apos;Fan&apos;;  </div><div class="line">3.     this.name = &apos;aaa&apos;;  </div><div class="line">4. &#125;  </div><div class="line">5. Father.prototype.showName = function()&#123;  </div><div class="line">6.     alert(this.familyName+&apos; &apos;+this.name);  </div><div class="line">7. &#125;  </div><div class="line">8. function San()&#123;  </div><div class="line">9.     this.name = &apos;Lizhi&apos;  </div><div class="line">10. &#125;  </div><div class="line">11. San.prototype = new Father();  </div><div class="line">12. San.prototype.showName = function()&#123;  </div><div class="line">13.     alert(this.name+&apos; &apos;+this.familyName);  </div><div class="line">14. &#125;  </div><div class="line">15. var s = new San();  </div><div class="line">16. s.showName();//Fan Lizhi</div></pre></td></tr></table></figure></p>
 <p>San.prototype = new Father(); 就是将实例的Father赋值给 San的原型对象，实例后的Father包含构造函数Father的属性familyName,以及Father原型对象中的属性,也一起赋值给了San的原型，所以实例化San的时候同时也包含了Father中的属性。因此才实现了继承关系.当我们s.showName();时，我很会开始在对象里面一级级查找，首先我们会查找构造函数San()，我们先找San的构造函数没有这个方法，然后又开始查找san的原型链中，发现了从Father那里继承过来的showName();方法，于是返回。同样的访问顺序得到familyName和name。San.prototype = new Father();的意思其实就是 将实例化Father的属性赋值给San的原型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">17. San.prototype = &#123;  </div><div class="line">18.     this.familyName : &apos;Fan&apos;,  </div><div class="line">19.     this.name : &apos;aaa&apos;,  </div><div class="line">20.     showName : function()&#123;  </div><div class="line">21.         alert(this.familyName+&apos; &apos;+this.name);  </div><div class="line">22.     &#125;  </div><div class="line">23. &#125;</div></pre></td></tr></table></figure></p>

@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://iceman107.github.io">
   <title>JS作用域链 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：【作用域链】">
+  <meta name="description" content="摘要：【作用域链：就是当函数执行的时候会创建由变量对象构成的作用域链，作用域链就是保证所有变量和函数的有序访问。】">
 <meta name="keywords" content="作用域链,JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS作用域链">
 <meta property="og:url" content="http://iceman107.github.io/2016/05/30/day07/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="摘要：【作用域链】">
-<meta property="og:updated_time" content="2017-04-23T03:40:01.101Z">
+<meta property="og:description" content="摘要：【作用域链：就是当函数执行的时候会创建由变量对象构成的作用域链，作用域链就是保证所有变量和函数的有序访问。】">
+<meta property="og:updated_time" content="2017-04-23T03:43:41.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS作用域链">
-<meta name="twitter:description" content="摘要：【作用域链】">
+<meta name="twitter:description" content="摘要：【作用域链：就是当函数执行的时候会创建由变量对象构成的作用域链，作用域链就是保证所有变量和函数的有序访问。】">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：<br>【作用域链】</p>
+        <p>摘要：<br>【作用域链：就是当函数执行的时候会创建由变量对象构成的作用域链，作用域链就是保证所有变量和函数的有序访问。】</p>
 <a id="more"></a>
 <p>什么是作用域链？先看例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. var color = &apos;red&apos;;  </div><div class="line">2. function getColor()&#123;  </div><div class="line">3.     alert(color);  </div><div class="line">4.     color = &apos;blue&apos;;  </div><div class="line">5.     alert(color);  </div><div class="line">6. &#125;  </div><div class="line">7. getColor();//red,blue</div></pre></td></tr></table></figure></p>
 <p>作用域链：就是当函数执行的时候会创建由变量对象构成的作用域链，作用域链就是保证所有变量和函数的有序访问。<br>看上面这段代码，var color = ‘red’; 这个是最外层的是共用环境中的一个变量，getColor这个函数又有了自己的环境，但是当调用第一个alert(color)的时候访问的是外层的color，当第二次调用color的时候由于函数里面重新定义了color所以背覆盖成了blue。也就是说当我调用getColor()，他创建了一个当前函数的活动变量对象，包含arguments(arguments是函数传入的参数)和color=‘blue’，他位于链的下端也就是最内层，而var color=’red’是链条的上一层也就是外一层，内层有权访问外一层的变量。由于变量的外一层是window环境所以我们用视图表示的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">8. window  </div><div class="line">9. |  </div><div class="line">10. |——color=&apos;red&apos;  </div><div class="line">11. |——getColor()  </div><div class="line">12.     |  </div><div class="line">13.     |——color=&apos;blue&apos;</div></pre></td></tr></table></figure></p>

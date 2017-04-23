@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://iceman107.github.io">
   <title>JS闭包 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要：【闭包】">
+  <meta name="description" content="摘要：【闭包：原理是指有权访问另一个函数作用域中的变量的函数】">
 <meta name="keywords" content="JavaScript,闭包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS闭包">
 <meta property="og:url" content="http://iceman107.github.io/2016/07/21/day08/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="摘要：【闭包】">
-<meta property="og:updated_time" content="2017-04-23T03:40:04.082Z">
+<meta property="og:description" content="摘要：【闭包：原理是指有权访问另一个函数作用域中的变量的函数】">
+<meta property="og:updated_time" content="2017-04-23T03:43:21.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS闭包">
-<meta name="twitter:description" content="摘要：【闭包】">
+<meta name="twitter:description" content="摘要：【闭包：原理是指有权访问另一个函数作用域中的变量的函数】">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>摘要：<br>【闭包】</p>
+        <p>摘要：<br>【闭包：原理是指有权访问另一个函数作用域中的变量的函数】</p>
 <a id="more"></a>
 <p>闭包：原理是指有权访问另一个函数作用域中的变量的函数。如下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. var name = &apos;fanlizhi&apos;;  </div><div class="line">2. function callName()&#123;  </div><div class="line">3.     var age = &apos;22&apos;;  </div><div class="line">4.     alert(name);  </div><div class="line">5.     alert(age);  </div><div class="line">6. &#125;  </div><div class="line">7. callName(&apos;fanlizhi&apos;);//fanlizhi/22</div></pre></td></tr></table></figure></p>
 <p>这个就是闭包，函数里面能够访问到age，也可以访问到函数外面的name.其实这只是最简单的闭包，但是原理都是一样的，当函数里面嵌套函数就变得没那么容易理解了，其实理解闭包最主要的是理解作用域链，这个我在前面的javascript深入理解（作用域）中已经说的很多了，这些也是理解闭包的基础。当我们调用一个函数，他会创建一个作用域链，当函数用完就会销毁作用域链，但是当我们将函数赋值给一个变量后，由于变量存在于外部环境，他也有自己属于的作用域链，所以在这个变量销毁之前也会保存原来函数中所需要的作用域。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">8. function count()&#123;  </div><div class="line">9.     for(var i=0; i&lt;10; i++)&#123;  </div><div class="line">10.     &#125;  </div><div class="line">11.     alert(i);  </div><div class="line">12. &#125;  </div><div class="line">13. count();//10</div></pre></td></tr></table></figure></p>
