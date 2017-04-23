@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iceman107.github.io">
-  <title>day07 | iceman的博客</title>
+  <title>作用域链 | iceman的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录成长之路">
-<meta name="keywords">
+  <meta name="description" content="摘要：【作用域链】">
+<meta name="keywords" content="作用域链,JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="day07">
+<meta property="og:title" content="作用域链">
 <meta property="og:url" content="http://iceman107.github.io/2016/05/30/day07/index.html">
 <meta property="og:site_name" content="iceman的博客">
-<meta property="og:description" content="记录成长之路">
-<meta property="og:updated_time" content="2017-04-23T02:25:27.491Z">
+<meta property="og:description" content="摘要：【作用域链】">
+<meta property="og:updated_time" content="2017-04-23T03:18:31.438Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="day07">
-<meta name="twitter:description" content="记录成长之路">
+<meta name="twitter:title" content="作用域链">
+<meta name="twitter:description" content="摘要：【作用域链】">
   
     <link rel="alternative" href="/atom.xml" title="iceman的博客" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      day07
+      作用域链
     </h1>
   
 
@@ -178,7 +178,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>摘要：<br>【作用域链】</p>
+<a id="more"></a>
+<p>什么是作用域链？先看例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. var color = &apos;red&apos;;  </div><div class="line">2. function getColor()&#123;  </div><div class="line">3.     alert(color);  </div><div class="line">4.     color = &apos;blue&apos;;  </div><div class="line">5.     alert(color);  </div><div class="line">6. &#125;  </div><div class="line">7. getColor();//red,blue</div></pre></td></tr></table></figure></p>
+<p>作用域链：就是当函数执行的时候会创建由变量对象构成的作用域链，作用域链就是保证所有变量和函数的有序访问。<br>看上面这段代码，var color = ‘red’; 这个是最外层的是共用环境中的一个变量，getColor这个函数又有了自己的环境，但是当调用第一个alert(color)的时候访问的是外层的color，当第二次调用color的时候由于函数里面重新定义了color所以背覆盖成了blue。也就是说当我调用getColor()，他创建了一个当前函数的活动变量对象，包含arguments(arguments是函数传入的参数)和color=‘blue’，他位于链的下端也就是最内层，而var color=’red’是链条的上一层也就是外一层，内层有权访问外一层的变量。由于变量的外一层是window环境所以我们用视图表示的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">8. window  </div><div class="line">9. |  </div><div class="line">10. |——color=&apos;red&apos;  </div><div class="line">11. |——getColor()  </div><div class="line">12.     |  </div><div class="line">13.     |——color=&apos;blue&apos;</div></pre></td></tr></table></figure></p>
+<p>访问的时候由下往上访问。得到值就返回。不继续搜索，所以很明显如果所搜的变量在第一层作用域中速度是最快的。如果在外部访问内部，也就是逆着作用域链寻找是会出错的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">14. function getColor()&#123;  </div><div class="line">15.     var newcolor = &apos;blue&apos;;  </div><div class="line">16. &#125;  </div><div class="line">17. alert(newcolor);//error</div></pre></td></tr></table></figure></p>
+<p>上面代码newcolor是getColor内部的变量，而外部的alert(newcolor)为window的作用域，在最外层，由于也不能逆着作用域链找，所以按作用域链由下往上找的话找不到，也就出错了。<br>javascript 中有一些特性，你可能觉得不可思议<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">18. for(var i-0; i&lt;10; i++)&#123;  </div><div class="line">19.     //dosomething(i)  </div><div class="line">20. &#125;  </div><div class="line">21. alert(i);//i=10;</div></pre></td></tr></table></figure></p>
+<p>在其他语言中如java，c，c++ 通常for里面是一个代码块，外面是不能访问的，但是javascript可以访问，并且访问的是i的最后值。同样的也存在于其他块级作用域中如 if语句。<br>如果你想在function外面也能访问里面的东西，那就需要在作用链上加点手脚了。还是前面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">22. function getColor()&#123;  </div><div class="line">23.     newcolor = &apos;blue&apos;;  </div><div class="line">24. &#125;  </div><div class="line">25. alert(newcolor);//blue</div></pre></td></tr></table></figure></p>
+<p>当去掉的var 关键字声明的变量竟然可以在外部访问，是由于如果不用var声明变量，这个变量默认的就是window的属性，位于最外层作用域，所以当然能访问，因此如果不用var 声明变量的话，可能会出现未知错误，所以不提倡，但可以用window.color“声明”。<br>最后解释一下， 上面for循环和getColor方法，用作用域链解释就很明白了， for循环外面能访问到for循环里面的值，因为处于同一作用域中，for,if代码块不会分割出新的作用域链，而getColor方法是分割成新的作用域链的。</p>
+
       
 
       
@@ -207,6 +215,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">作用域链</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -275,14 +298,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          day06
+          继承
         
       </div>
     </a>
   
   
     <a href="/2016/07/21/day08/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">day08</div>
+      <div class="article-nav-title">闭包</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -407,6 +430,30 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JS闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">作用域链</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">严格模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">闭包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
               </li>
             
             <div class="clearfix"></div>
